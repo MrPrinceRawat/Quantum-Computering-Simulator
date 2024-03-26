@@ -14,7 +14,6 @@ This is a simple project to simulate quantum behaviour on your local machine. On
 import numpy as np
 from gates import *
 import time
-import itertools
 
 # Register number of qubits you want to use.
 s = [
@@ -49,6 +48,34 @@ run(s, shots=10000, circuit=c)
 ```
 
 You can verify or use the GUI on IBM's platform here: [IBM Quantum Composer](https://quantum.ibm.com/composer/)
+
+# Available Gates
+
+You can learn more about quantum gates at [Wikipeida](https://en.wikipedia.org/wiki/Quantum_logic_gate)
+
+1. Single Qubit Gates
+
+````
+	a. Hadamard Gate (H)
+		Puts the qubit in super position
+		Use - ```["H", q[n]]```
+	b. Pauli Gates (X,Y,Z)
+		Spins the qubit 90deg in that axis
+		Use - ["X", q[n]]
+			  ["Y", q[n]]
+			  ["Z", q[n]]
+````
+
+2. Controlled Gates
+
+```
+	a. Controlled-NOT (CNOT)
+		Performs a not operation on targed when the control bit is |1⟩
+		Use - ["CNOT", <target>, <control>]
+	b. Controlled-Z (CZ)
+		Performs a Pauli Z operation on targed when the control bit is |1⟩
+		Use - ["CZ", <target>, <control>]
+```
 
 # Contribution
 
