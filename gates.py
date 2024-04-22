@@ -1,9 +1,8 @@
 from ast import Bytes
 import random
-import itertools
 
 
-class q:
+class qbit:
     def __init__(self):
         self.q = [0, 0, 1]
 
@@ -103,7 +102,6 @@ class q:
 def run(s, shots, circuit):
     possibleStates = 2 ** len(s)
     print(f"{possibleStates} Possible States\n\n")
-    # states = list(itertools.product([0, 1], repeat=len(s)))
     statesFound = []
     states = []
     MeasurementHistory = []
@@ -142,35 +140,6 @@ def run(s, shots, circuit):
             states.append(z)
     statesFound.sort(key=lambda x: x[0], reverse=True)
     num = int(''.join(str(e) for e in statesFound[0][1]), 2)
-    # print(len(str(num)))
-    # print(num)
-    # print("\n")
     for i in statesFound:
         if i[0] != 0:
             print(i)
-
-
-# def run(s, shots):
-#     possibleStates = 2 ** len(s)
-#     print(f"{possibleStates} Possible States")
-#     states = list(itertools.product([0, 1], repeat=len(s)))
-#     statesFound = [0 for _ in range(possibleStates)]
-#     MeasurementHistory = []
-#     for _ in range(shots):
-#         qbitStates = []
-#         for i in s:
-#             m = i.Measure()[2]
-#             if m == 1:
-#                 qbitStates.append(0)
-#             elif m == -1:
-#                 qbitStates.append(1)
-#             elif m == 0:
-#                 qbitStates.append(random.randint(0, 1))
-#         MeasurementHistory.append(qbitStates)
-#     for i, z in enumerate(states):
-#         statesFound[i] = [
-#             round((MeasurementHistory.count(list(z)) / shots) * 100, 2), str(z)]
-#     statesFound.sort(key=lambda x: x[0], reverse=True)
-#     for i in statesFound:
-#         if i[0] != 0:
-#             print(i)
