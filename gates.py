@@ -5,25 +5,7 @@ import random
 class qbit:
     def __init__(self):
         self.q = [0, 0, 1]
-
-    def X(self):
-        self.rotX90()
-        self.rotX90()
-        return self.q
-
-    def Y(self):
-        self.rotY90()
-        self.rotY90()
-        return self.q
-
-    def Z(self):
-        self.rotZ90()
-        self.rotZ90()
-        return self.q
-
-    def getState(self):
-        return self.q
-
+    
     def rotY90(self):
         x, y, z = self.q
         # 90 deg rot on y axis
@@ -71,6 +53,24 @@ class qbit:
         elif x == 0 and y == 1:
             self.q[0] += 1
             self.q[1] -= 1
+
+    def X(self):
+        self.rotX90()
+        self.rotX90()
+        return self.q
+
+    def Y(self):
+        self.rotY90()
+        self.rotY90()
+        return self.q
+
+    def Z(self):
+        self.rotZ90()
+        self.rotZ90()
+        return self.q
+
+    def getState(self):
+        return self.q
 
     def H(self):
         self.rotY90()
