@@ -1,11 +1,16 @@
 from ast import Bytes
 import random
+from .vis_bloch import plot_bloch_circles
 
 
 class qbit:
+    """
+    qbit class
+    """
+
     def __init__(self):
         self.q = [0, 0, 1]
-    
+
     def rotY90(self):
         x, y, z = self.q
         # 90 deg rot on y axis
@@ -98,8 +103,42 @@ class qbit:
     def reset(self):
         self.q = [0, 0, 1]
 
+    def visualize(self):
+        plot_bloch_circles(self.q)
 
-def run(s, shots, circuit):
+
+def run(s, circuit, shots):
+    """
+    Run the circuit
+
+    Args:
+        s (list): List of qbit objects
+        shots (int): Number of shots to run the circuit
+        circuit (list): List of gates and qbit objects
+
+    Returns:
+        None
+
+    Example:
+        >>> import simple_qsim
+        >>> q = [simple_qsim.qbit()]
+        >>> circuit = [
+        ...     ["H", q],
+        ...     ["X", q],
+        ...     ["Y", q],
+        ...     ["Z", q],
+        ...     ["CNOT", q, q],
+        ...     ["CZ", q, q],
+        ... ]
+        >>> simple_qsim.run(q, circuit, 10)
+        [0.0, [0, 0, 1]]
+        [0.0, [0, 0, 1]]
+        ...
+        [100.0, [1, 0, 0]]
+        [100.0, [1, 0, 0]]
+
+
+    """
     possibleStates = 2 ** len(s)
     print(f"{possibleStates} Possible States\n\n")
     statesFound = []
@@ -135,11 +174,12 @@ def run(s, shots, circuit):
         MeasurementHistory.append(qbitStates)
     for i, z in enumerate(MeasurementHistory):
         if z not in states:
-            statesFound.append([
-                round((MeasurementHistory.count(z) / shots) * 100, 2), z])
+            statesFound.append(
+                [round((MeasurementHistory.count(z) / shots) * 100, 2), z]
+            )
             states.append(z)
     statesFound.sort(key=lambda x: x[0], reverse=True)
-    num = int(''.join(str(e) for e in statesFound[0][1]), 2)
+    num = int("".join(str(e) for e in statesFound[0][1]), 2)
     for i in statesFound:
         if i[0] != 0:
             print(i)
