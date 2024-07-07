@@ -4,21 +4,16 @@ This is a simple project to simulate quantum behaviour on your local machine. On
 
 # How to use
 
-1. Clone this repo
-2. There are basically 2 file
-   a. Gates.py - Holds all the logic
-   b. Main.py - This is where you write your code.
-3. Sample main.py
+1. Create a simple python file, say `main.py`, with the following content.
 
 ```
-import numpy as np
-from gates import *
-import time
+import simple_qsim
 
 # Register number of qubits you want to use.
 s = [
-q() for _ in  range(3)
+	simple_qsim.q() for _ in  range(3)
 ]
+
 # Sample Circuit
 c = [
 ["H", s[0]],
@@ -30,12 +25,14 @@ c = [
 ["H", s[1]],
 ["H", s[2]],
 ]
-run(s, shots=10000, circuit=c)
+
+# Run the circuit
+simple_qsim.run(s, shots=10000, circuit=c)
 ```
 
-4. Then run it using python
+2. Then run it using python
    `python3 main.py`
-5. You should see something like:
+3. You should see something like:
 
 ```
 8 Possible States
