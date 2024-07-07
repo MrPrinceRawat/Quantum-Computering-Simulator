@@ -1,5 +1,12 @@
 # Quantum Computer Simulator
 
+![GitHub branch status](https://img.shields.io/github/checks-status/MrPrincerawat/Quantum-Computering-Simulator/pypi_release)
+![PyPI - License](https://img.shields.io/pypi/l/simple_qsim)
+![PyPI - Status](https://img.shields.io/pypi/status/simple_qsim)
+![PyPI - Version](https://img.shields.io/pypi/v/simple_qsim)
+
+### Headover to [PyPi](https://pypi.org/project/simple-qsim/) to install the package, relevent docs available at [ReadTheDocs](https://simple-qsim.readthedocs.io/en/latest/)
+
 This is a simple project to simulate quantum behaviour on your local machine. One of the benefit of running this locally is there is essentially no limit on how many qubits can scale too, it comes down to your PC's specs and how many qubits you as a person handle.
 
 # How to use
